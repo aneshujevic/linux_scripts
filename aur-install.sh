@@ -6,6 +6,6 @@ if [ $# -ne 1 ]; then
     exit -1
 fi
 
-DIR_NAME_AUR=$(echo $1 | grep -o -P '[(a-zA-Z0-9)]+(?=.git)')
+DIR_NAME_AUR=$(echo $1 | grep -o -P '(?<=org\/).+(?=\.git)')
 
 git clone $1 && cd $DIR_NAME_AUR && makepkg -si && cd - && (yes | rm -r $DIR_NAME_AUR)
